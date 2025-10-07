@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    ::-webkit-scrollbar { display: none; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 선택된 버튼 스타일 */
+    .selected {
+      outline: 2px solid #5B9DFF;
+      outline-offset: 1px;
+      box-shadow: 0 0 0 2px rgba(91,157,255,0.3);
+    }
+
+    /* hover 제거 */
+    button:hover,
+    button:focus {
+      background-color: inherit !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    /* 다음 버튼 스타일 */
+    .sticky-bottom-btn {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 14px 0;
+      text-align: center;
+      border: none;
+      border-radius: 0.75rem;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* 비활성화 상태 */
+    .sticky-bottom-btn:disabled {
+      background-color: #E0E0E0;
+      color: #A0A0A0;
+      cursor: not-allowed;
+    }
+
+    /* 활성화 상태 */
+    .sticky-bottom-btn.active {
+      background-color: #5B9DFF;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'custom-green': '#eef7f0',
+            'custom-orange': '#fff2e9',
+            'custom-blue': '#edf2f9',
+            'custom-rose': '#fff0f0',
+            'custom-white': '#f8f9fa',
+            'custom-mint': '#eef7f5',
+            'custom-amber': '#fff8e9',
+            'custom-sky': '#eef5fb',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="mobile-screen-container" class="w-full max-w-[375px] mx-auto bg-white h-[812px] shadow-lg flex flex-col rounded-2xl overflow-hidden">
+
+    <!-- 헤더 -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-100">
+      <!-- 🔹 뒤로가기 버튼 → 브라우저 이전 페이지 이동 -->
+      <button class="text-gray-500" onclick="window.history.back()">
+        <i class="fas fa-chevron-left fa-lg"></i>
+      </button>
+      <h1 class="text-base font-medium text-gray-800">인터뷰 - 그 사람을 떠올리기</h1>
+      <div class="w-6"></div>
+    </header>
+
+    <!-- 메인 -->
+    <main class="flex-grow p-5 overflow-y-auto">
+
+      <!-- 진행률 -->
+      <div class="text-center mb-8">
+        <p class="text-xs text-gray-500 mb-2">1/3 단계</p>
+        <div class="w-full bg-gray-200 rounded-full h-1.5">
+          <div class="bg-sky-400 h-1.5 rounded-full" style="width: 33%"></div>
+        </div>
+      </div>
+
+      <!-- 안내 텍스트 -->
+      <div class="text-center mb-8">
+        <p class="text-gray-700 text-base">첫 편지를 쓰기 전, 그 사람을 떠올려요</p>
+      </div>
+
+      <!-- 질문 1 -->
+      <section class="bg-white rounded-2xl shadow-sm p-6 mb-6">
+        <h2 class="text-base font-medium text-gray-800 mb-5">그분을 어떻게 불렀나요?</h2>
+        <div class="grid grid-cols-2 gap-3" id="callButtons">
+          <button class="text-gray-700 bg-custom-green py-3 rounded-xl text-sm active:scale-95">할아버지</button>
+          <button class="text-gray-700 bg-custom-orange py-3 rounded-xl text-sm active:scale-95">할머니</button>
+          <button class="text-gray-700 bg-custom-blue py-3 rounded-xl text-sm active:scale-95">엄마</button>
+          <button class="text-gray-700 bg-custom-rose py-3 rounded-xl text-sm active:scale-95">아빠</button>
+          <button class="text-gray-700 bg-custom-white py-3 rounded-xl text-sm border border-gray-200 active:scale-95">언니</button>
+          <button class="text-gray-700 bg-custom-mint py-3 rounded-xl text-sm active:scale-95">형</button>
+          <button class="text-gray-700 bg-custom-amber py-3 rounded-xl text-sm active:scale-95">친구</button>
+          <button class="text-gray-700 bg-custom-sky py-3 rounded-xl text-sm active:scale-95">반려동물</button>
+        </div>
+      </section>
+
+      <!-- 질문 2 -->
+      <section class="bg-white rounded-2xl shadow-sm p-6">
+        <h2 class="text-base font-medium text-gray-800 mb-5">어떤 말투로 대화하셨나요?</h2>
+        <div class="space-y-3" id="toneButtons">
+          <button class="w-full text-left text-gray-700 bg-custom-green py-3 px-4 rounded-xl text-sm active:scale-95">다정하고 따뜻하게</button>
+          <button class="w-full text-left text-gray-700 bg-custom-orange py-3 px-4 rounded-xl text-sm active:scale-95">장난스럽고 유쾌하게</button>
+          <button class="w-full text-left text-gray-700 bg-custom-blue py-3 px-4 rounded-xl text-sm active:scale-95">조용하고 차분하게</button>
+          <button class="w-full text-left text-gray-700 bg-custom-rose py-3 px-4 rounded-xl text-sm active:scale-95">격식있고 정중하게</button>
+        </div>
+      </section>
+
+      <!-- 다음 버튼 -->
+      <button id="nextBtn" class="sticky-bottom-btn" disabled>다음</button>
+
+    </main>
+  </div>
+
+  <script>
+    const nextBtn = document.getElementById('nextBtn');
+
+    // 그룹 내 단일 선택 + 다시 클릭 시 해제
+    function enableSingleSelect(groupSelector) {
+      const buttons = document.querySelectorAll(groupSelector + ' button');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('selected')) {
+            btn.classList.remove('selected');   // 이미 선택 → 해제
+          } else {
+            buttons.forEach(b => b.classList.remove('selected')); // 다른 버튼 해제
+            btn.classList.add('selected');      // 새 선택
+          }
+          updateNextButtonState();  // 버튼 상태 업데이트
+        });
+      });
+    }
+
+    enableSingleSelect('#callButtons');
+    enableSingleSelect('#toneButtons');
+
+    // 다음 버튼 활성화 조건 확인
+    function updateNextButtonState() {
+      const callSelected = document.querySelector('#callButtons .selected');
+      const toneSelected = document.querySelector('#toneButtons .selected');
+
+      if (callSelected && toneSelected) {
+        nextBtn.disabled = false;
+        nextBtn.classList.add('active');
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.classList.remove('active');
+      }
+    }
+
+    // 다음 버튼 클릭 시 페이지 이동
+    nextBtn.addEventListener('click', () => {
+      if (!nextBtn.disabled) {
+        window.location.href = 'progress2.html';
+      }
+    });
+  </script>
+</body>
+</html>
