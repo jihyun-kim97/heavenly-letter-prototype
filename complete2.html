@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+  <style>
+      body { 
+        font-family: 'Noto Sans KR', sans-serif; 
+        background:#F9F8F6;
+      }
+      ::-webkit-scrollbar { display: none; }
+
+      /* 공통 블루 버튼 */
+      .blue-btn {
+        background-color: #5B9DFF;
+        color: white;
+        font-weight: 500; /* 버튼 글씨 두께: 미디움 */
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .blue-btn:hover {
+        background-color: #4A8EE0;
+      }
+  </style>
+</head>
+
+<body>
+  <div class="w-full max-w-sm mx-auto h-[844px] flex flex-col bg-[#F9F8F6] shadow-2xl">
+
+      <!-- ✅ 헤더 -->
+      <header class="flex items-center justify-between p-4 border-b border-gray-100">
+        <!-- 🔙 브라우저 이전 페이지로 이동 -->
+        <button id="backBtn" class="text-gray-500">
+          <i class="fas fa-chevron-left fa-lg"></i>
+        </button>
+        <h1 class="text-base font-medium text-gray-800">편지 전송 완료 !</h1>
+        <div class="w-6"></div>
+      </header>
+
+      <!-- ✅ Main -->
+      <main class="flex-1 flex flex-col items-center justify-center text-center px-8 relative">
+
+          <!-- 아이콘 -->
+          <div class="mb-8">
+              <div class="w-20 h-20 bg-[#D6E6FF] rounded-full flex items-center justify-center">
+                  <div class="w-16 h-16 bg-[#D6E6FF] rounded-full flex items-center justify-center">
+                      <i class="fa-regular fa-envelope-open text-white text-[28px]"></i>
+                  </div>
+              </div>
+          </div>
+
+          <!-- 텍스트 -->
+          <section class="text-center mb-12">
+              <h2 class="text-[18px] font-bold text-[#5C524A] mb-[32px]">
+                  편지 전송 완료 !
+              </h2>
+              <p class="text-[#7A6E64] text-[14px] leading-relaxed">
+                  편지 전송이 완료되었어요<br>
+                  그리운 그 사람에게 잘 전달되었길 ...
+              </p>
+          </section>
+
+          <!-- ✅ 버튼 (중간 아래 위치) -->
+          <div class="absolute bottom-[20%] w-full px-8">
+              <button 
+                  onclick="window.location.href='mailbox.html'" 
+                  class="w-full py-4 rounded-2xl blue-btn">
+                  편지함으로
+              </button>
+          </div>
+      </main>
+
+  </div>
+
+  <script>
+    // 🔙 뒤로가기 버튼 → 브라우저의 이전 페이지로 이동
+    const backBtn = document.getElementById('backBtn');
+    backBtn.addEventListener('click', () => {
+      window.history.back();
+    });
+  </script>
+</body>
+</html>
