@@ -7,29 +7,22 @@
 
   <!-- ✅ Tailwind / Font -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet" />
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
-    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
 
   <style>
-    ::-webkit-scrollbar {
-      display: none;
-    }
+    ::-webkit-scrollbar { display: none; }
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
       background: #F7F7F7;
     }
 
-    /* 카드 클릭 스타일 */
+    /* 카드 hover 효과 */
     .clickable-card {
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-
     .clickable-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
@@ -44,11 +37,32 @@
       width: 100%;
       max-width: 375px;
       z-index: 50;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+      padding: 8px 0;
     }
 
-    /* CTA 버튼이 네비바와 겹치지 않도록 하단 공간 확보 */
+   /* ✅ 새 편지 작성 버튼 (좌우16px & 네비바 위16px) */
+    #cta-button {
+      position: fixed;
+      bottom: 72px; /* 네비바 높이(약56px) + 간격16px */
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px); /* 좌우 16px 여백 */
+      max-width: calc(375px - 32px);
+      background-color: #6B9FDE;
+      color: #fff;
+      font-weight: 600;
+      padding: 16px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      z-index: 40;
+    }
+
+
+    /* Main content 하단 여백 확보 */
     #main-content {
-      padding-bottom: 120px;
+      padding-bottom: 180px;  /* 버튼 + 네비바 공간 */
     }
   </style>
 
@@ -71,8 +85,7 @@
 </head>
 
 <body>
-  <div id="mobile-screen"
-    class="w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col relative">
+  <div class="w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col relative">
 
     <!-- ✅ Header -->
     <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
@@ -87,8 +100,7 @@
       <div class="flex-1 text-center py-3 border-b-2 border-black">
         <span class="font-semibold text-gray-dark">안 읽은 편지함</span>
       </div>
-      <div onclick="window.location.href='mailbox2.html'"
-        class="flex-1 text-center py-3 cursor-pointer">
+      <div onclick="window.location.href='mailbox2.html'" class="flex-1 text-center py-3 cursor-pointer">
         <span class="text-gray-medium">읽은 편지함</span>
       </div>
     </nav>
@@ -157,32 +169,35 @@
       </div>
     </main>
 
-    <!-- ✅ CTA -->
-    <div id="cta-section" class="px-4 pb-24 bg-gray-light">
-      <button onclick="window.location.href='letter.html'"
-        class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl shadow-lg">
-        새 편지 작성
-      </button>
-    </div>
+    <!-- ✅ 고정된 새 편지 작성 버튼 (좌우 16px, 네비바와 16px 간격) -->
+    <button id="cta-button" onclick="window.location.href='letter.html'"
+      class="bg-brand-blue text-white font-bold rounded-xl shadow-lg">
+      새 편지 작성
+    </button>
 
     <!-- ✅ Footer Navigation -->
-    <footer id="footer"
-      class="flex justify-around items-center py-2 border-t border-gray-200 bg-white">
+    <footer id="footer" class="flex justify-around items-center">
+      <!-- 홈 -->
       <div onclick="window.location.href='index.html'"
         class="flex flex-col items-center text-gray-medium cursor-pointer">
         <i class="fa-solid fa-house text-xl"></i>
         <span class="text-xs mt-1">홈</span>
       </div>
+
+      <!-- 편지함 활성 -->
       <div class="flex flex-col items-center text-brand-blue">
         <i class="fa-solid fa-envelope text-xl"></i>
         <span class="text-xs mt-1">편지함</span>
       </div>
+
+      <!-- 달력 -->
       <div onclick="window.location.href='calendar.html'"
         class="flex flex-col items-center text-gray-medium cursor-pointer">
         <i class="fa-solid fa-calendar-days text-xl"></i>
         <span class="text-xs mt-1">달력</span>
       </div>
     </footer>
+
   </div>
 </body>
 
