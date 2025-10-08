@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,107 +12,65 @@
 
   <style>
     ::-webkit-scrollbar { display: none; }
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: #ffffff; /* ✅ 전체 흰색 배경 */
-    }
+    body { font-family: 'Noto Sans KR', sans-serif; background:#fff; }
 
-    /* 버튼 스타일 */
     .blue-btn {
-      background-color: #4C8AD6;
-      color: white;
-      font-weight: 500;
-      padding: 0.875rem 1rem;
-      width: 100%;
-      font-size: 1rem;
-      border-radius: 12px;
-      border: none;
+      background:#4C8AD6; color:#fff;
+      font-weight:500; font-size:1rem;
+      padding:0.875rem 1rem;
+      width:100%; border:none; border-radius:12px;
     }
+    .center-illustration{
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; background:#fff;
+    }
+    .illustration-container{ width:12rem; height:12rem; margin-bottom:32px;}
+    .illustration-container img{ border-radius:9999px; }
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    .animate-float{animation:float 3s ease-in-out infinite;}
 
-    /* 중앙 정렬 */
-    .center-illustration {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: calc(100% - 150px); /* 버튼 + 네비 영역 제외 */
-      background: #ffffff; /* ✅ 중앙 영역도 흰색 */
-    }
-
-    /* 일러스트 여백 */
-    .illustration-container {
-      margin-bottom: 32px;
-      width: 12rem;
-      height: 12rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* 원형 유지 */
-    .illustration-container img {
-      border-radius: 9999px;
-    }
-
-    /* 🌟 별 둥둥 애니메이션 */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    .animate-float {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    /* ✅ 네비게이션 스타일 */
-    .nav-text-gray {
-      color: #9CA3AF; /* 비활성 회색 */
-    }
-    .nav-text-active {
-      color: #4C8AD6; /* 활성 파랑 */
-    }
+    .nav-text-gray{color:#9CA3AF;}
+    .nav-text-active{color:#4C8AD6;}
   </style>
 </head>
 
-<body class="flex items-center justify-center min-h-screen">
-
-  <div id="mobile-frame" class="relative w-[360px] h-[800px] bg-white shadow-2xl overflow-hidden flex flex-col">
+<body class="flex items-center justify-center min-h-[100dvh] bg-white">
+  <!-- ✅ 모바일 프레임 -->
+  <div class="w-[360px] h-[800px] max-h-[100dvh] bg-white shadow-2xl flex flex-col">
 
     <!-- ⭐ 중앙 온보딩 콘텐츠 -->
-    <main class="center-illustration text-center px-8 flex-1">
+    <main class="flex-1 center-illustration px-8">
       <div class="illustration-container">
         <img class="w-full h-full object-cover animate-float"
              src="https://storage.googleapis.com/uxpilot-auth.appspot.com/718e437aa8-529b0d618ed169e630ba.png"
              alt="하늘의 별 일러스트" />
       </div>
-
       <h2 class="text-2xl font-bold text-gray-800 mb-3">하늘에서 온 편지</h2>
       <p class="text-base text-gray-600 leading-relaxed">
-        그리운 사람을 떠올리며<br>
-        따뜻한 마음을 전할 수 있어요.
+        그리운 사람을 떠올리며<br>따뜻한 마음을 전할 수 있어요.
       </p>
     </main>
 
-<!-- ✅ Footer 버튼 -->
-<footer class="p-4 bg-white">   <!-- ← border-t, border-gray-200 제거 -->
-  <button id="start-button" class="blue-btn">편지 쓰러가기</button>
-</footer>
+    <!-- ✅ 편지 쓰러가기 버튼 -->
+    <div class="action-bar p-4 bg-white">
+      <button id="start-button" class="blue-btn">편지 쓰러가기</button>
+    </div>
 
-
-    <!-- ✅ Footer Navigation -->
-    <footer id="footer" class="flex justify-around items-center py-2 border-t border-gray-200 bg-white">
-      <!-- ✅ 홈 활성 -->
-      <div onclick="window.location.href='index.html'" class="flex flex-col items-center nav-text-active cursor-pointer">
+    <!-- ✅ 하단 네비게이션 -->
+    <footer class="navbar flex justify-around items-center py-2 border-t border-gray-200 bg-white">
+      <div onclick="location.href='index.html'"
+           class="flex flex-col items-center nav-text-active cursor-pointer">
         <i class="fa-solid fa-house text-xl"></i>
         <span class="text-xs mt-1">홈</span>
       </div>
-
-      <!-- 나머지는 비활성 -->
-      <div onclick="window.location.href='mailbox.html'" class="flex flex-col items-center nav-text-gray cursor-pointer">
+      <div onclick="location.href='mailbox.html'"
+           class="flex flex-col items-center nav-text-gray cursor-pointer">
         <i class="fa-solid fa-envelope text-xl"></i>
         <span class="text-xs mt-1">편지함</span>
       </div>
-
-      <div onclick="window.location.href='calendar.html'" class="flex flex-col items-center nav-text-gray cursor-pointer">
+      <div onclick="location.href='calendar.html'"
+           class="flex flex-col items-center nav-text-gray cursor-pointer">
         <i class="fa-solid fa-calendar-days text-xl"></i>
         <span class="text-xs mt-1">달력</span>
       </div>
@@ -120,11 +78,9 @@
   </div>
 
   <script>
-    // 버튼 클릭 → progress1.html로 이동
-    document.getElementById('start-button').addEventListener('click', () => {
-      window.location.href = 'progress1.html';
+    document.getElementById('start-button').addEventListener('click',()=>{
+      location.href='progress1.html';
     });
   </script>
-
 </body>
 </html>
