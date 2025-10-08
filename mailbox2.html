@@ -19,7 +19,6 @@
         ::-webkit-scrollbar {
             display: none;
         }
-
         body {
             font-family: 'Noto Sans KR', sans-serif;
         }
@@ -29,7 +28,6 @@
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-
         .clickable-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
@@ -54,13 +52,12 @@
 </head>
 
 <body class="bg-gray-light">
-    <div id="mobile-screen" class="w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col">
+    <div id="mobile-screen" class="relative w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col">
 
         <!-- ✅ Header -->
-        <header id="header"
-            class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-            <!-- 홈 아이콘 클릭 시 index.html.html로 이동 -->
-            <i onclick="window.location.href='index.html'" class="fa-solid fa-house text-gray-400 text-xl cursor-pointer"></i>
+        <header id="header" class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+            <i onclick="window.location.href='index.html'"
+               class="fa-solid fa-house text-gray-400 text-xl cursor-pointer"></i>
             <h1 class="text-lg font-medium text-gray-dark">편지함</h1>
             <div class="w-6"></div>
         </header>
@@ -69,7 +66,7 @@
         <nav id="tabs" class="flex border-b border-gray-200">
             <!-- 🔹 안읽은 편지함 클릭 시 mailbox.html로 이동 -->
             <div onclick="window.location.href='mailbox.html'"
-                class="flex-1 text-center py-3 cursor-pointer">
+                 class="flex-1 text-center py-3 cursor-pointer">
                 <span class="text-gray-medium">안 읽은 편지함</span>
             </div>
             <!-- ✅ 읽은 편지함 선택됨 -->
@@ -79,26 +76,24 @@
         </nav>
 
         <!-- ✅ Main Content -->
-        <main id="main-content" class="flex-1 overflow-y-auto bg-gray-light p-4 space-y-4">
+        <main id="main-content" class="flex-1 overflow-y-auto bg-gray-light p-4 space-y-4 pb-28">
 
-            <!-- Message Card 1 (할아버지) -->
-            <div id="message-card-1"
-                class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
-                onclick="window.location.href='recipient.html'">
+            <!-- Message Card 1 -->
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
+                 onclick="window.location.href='recipient.html'">
                 <div class="flex space-x-4">
                     <div class="flex flex-col items-center flex-shrink-0">
                         <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
                             <img class="w-full h-full object-cover"
-                                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-e102cc991a033ac2f75d.png"
-                                alt="grandfather illustration" />
+                                 src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-e102cc991a033ac2f75d.png"
+                                 alt="grandfather illustration" />
                         </div>
                         <span class="mt-2 text-sm text-gray-600">할아버지</span>
                     </div>
                     <div class="flex-1">
                         <p class="text-xs text-gray-400">25.10.03 (토)</p>
                         <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
-                        <div
-                            class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
+                        <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
                             <p>할아버지 보고 싶어요.</p>
                             <p>요즘 어떻게 지내세요?</p>
                         </div>
@@ -106,32 +101,29 @@
                             <i class="fa-solid fa-arrow-down text-gray-400"></i>
                         </div>
                         <p class="text-xs text-gray-500">답장 받은 편지</p>
-                        <div
-                            class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
+                        <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
                             <p>아이구 ~ 우리 손녀 잘지내니? 할애비도 잘지낸다 ...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Message Card 2 (아버지) -->
-            <div id="message-card-2"
-                class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
-                onclick="window.location.href='recipient.html'">
+            <!-- Message Card 2 -->
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
+                 onclick="window.location.href='recipient.html'">
                 <div class="flex space-x-4">
                     <div class="flex flex-col items-center flex-shrink-0">
                         <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
                             <img class="w-full h-full object-cover"
-                                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-9691c1e8a7204667f8f9.png"
-                                alt="father illustration" />
+                                 src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-9691c1e8a7204667f8f9.png"
+                                 alt="father illustration" />
                         </div>
                         <span class="mt-2 text-sm text-gray-600">아버지</span>
                     </div>
                     <div class="flex-1">
                         <p class="text-xs text-gray-400">25.10.03 (토)</p>
                         <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
-                        <div
-                            class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
+                        <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
                             <p>아버지 추석 잘 보냈어요?</p>
                             <p>보고싶네요 아버지</p>
                         </div>
@@ -139,42 +131,40 @@
                             <i class="fa-solid fa-arrow-down text-gray-400"></i>
                         </div>
                         <p class="text-xs text-gray-500">답장 받은 편지</p>
-                        <div
-                            class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
+                        <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
                             <p>그래, 벌써 추석이구나 나는 잘 지낸다. 너도 몸 조리 잘하고...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-16"></div>
         </main>
 
         <!-- ✅ CTA -->
-        <div id="cta-section" class="px-4 pb-4 bg-gray-light">
-            <!-- 새 편지 작성 클릭 시 letter.html로 이동 -->
+        <div id="cta-section" class="px-4 pb-24 bg-gray-light">
             <button onclick="window.location.href='letter.html'"
-                class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl shadow-lg">
+                    class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl shadow-lg">
                 새 편지 작성
             </button>
         </div>
 
-        <!-- ✅ Footer Navigation -->
+        <!-- ✅ Footer Navigation (fixed) -->
         <footer id="footer"
-            class="flex justify-around items-center py-2 border-t border-gray-200 bg-white">
-            <!-- 홈 클릭 시 index.html.html로 이동 -->
-            <div onclick="window.location.href='index.html'" class="flex flex-col items-center text-gray-medium cursor-pointer">
+            class="fixed bottom-0 left-0 right-0 max-w-sm mx-auto flex justify-around items-center py-2 border-t border-gray-200 bg-white shadow-lg">
+            <!-- 홈 -->
+            <div onclick="window.location.href='index.html'" class="flex flex-col items-center text-gray-400 cursor-pointer">
                 <i class="fa-solid fa-house text-xl"></i>
                 <span class="text-xs mt-1">홈</span>
             </div>
 
+            <!-- 현재 페이지: 편지함 활성 -->
             <div class="flex flex-col items-center text-brand-blue">
                 <i class="fa-solid fa-envelope text-xl"></i>
                 <span class="text-xs mt-1">편지함</span>
             </div>
 
-            <!-- 달력 클릭 시 calendar.html로 이동 -->
-            <div onclick="window.location.href='calendar.html'" class="flex flex-col items-center text-gray-medium cursor-pointer">
+            <!-- 달력 -->
+            <div onclick="window.location.href='calendar.html'" class="flex flex-col items-center text-gray-400 cursor-pointer">
                 <i class="fa-solid fa-calendar-days text-xl"></i>
                 <span class="text-xs mt-1">달력</span>
             </div>
