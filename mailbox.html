@@ -15,7 +15,7 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: #F7F7F7;
+      background: #ffffff; /* ✅ 전체 배경 화이트 */
     }
 
     /* 카드 hover 효과 */
@@ -42,23 +42,19 @@
       padding: 8px 0;
     }
 
-   /* ✅ 새 편지 작성 버튼 (좌우16px & 네비바 위16px) */
+    /* ✅ 새 편지 작성 버튼 고정 */
     #cta-button {
       position: fixed;
-      bottom: 72px; /* 네비바 높이(약56px) + 간격16px */
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 32px); /* 좌우 16px 여백 */
+      bottom: 72px;                /* 네비바(56px) + 간격 16px */
+      width: calc(100% - 32px);    /* 좌우 16px 여백 */
       max-width: calc(375px - 32px);
-      background-color: #6B9FDE;
-      color: #fff;
-      font-weight: 600;
       padding: 16px 0;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      font-weight: 600;
       z-index: 40;
     }
-
 
     /* Main content 하단 여백 확보 */
     #main-content {
