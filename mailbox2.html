@@ -1,176 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        window.FontAwesomeConfig = { autoReplaceSvg: 'nest' };
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.FontAwesomeConfig = { autoReplaceSvg: 'nest' };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
-        /* 카드 hover 효과 */
-        .clickable-card {
-            cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
+  <style>
+    ::-webkit-scrollbar { display: none; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #F7F7F7;
+    }
+
+    /* 카드 hover 효과 */
+    .clickable-card {
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .clickable-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* ✅ Footer Navigation 고정 */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 375px;
+      z-index: 50;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+      padding: 8px 0;
+    }
+
+    /* ✅ 새 편지 작성 버튼 (좌우16px & 네비바 위16px) */
+    #cta-button {
+      position: fixed;
+      bottom: 72px; /* 네비바 높이(약56px) + 간격16px */
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px); /* 좌우 16px 여백 */
+      max-width: calc(375px - 32px);
+      background-color: #6B9FDE;
+      color: #fff;
+      font-weight: 600;
+      padding: 16px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      z-index: 40;
+    }
+
+    /* 메인 콘텐츠 하단 여백 확보 */
+    main {
+      padding-bottom: 180px; /* 버튼+네비바 영역 확보 */
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-blue': '#6B9FDE',
+            'light-blue-bg': '#E9F2FF',
+            'light-yellow-bg': '#FFFBEA',
+            'gray-light': '#F7F7F7',
+            'gray-medium': '#A0A0A0',
+            'gray-dark': '#333333',
+          }
         }
-        .clickable-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-blue': '#6B9FDE',
-                        'light-blue-bg': '#E9F2FF',
-                        'light-yellow-bg': '#FFFBEA',
-                        'gray-light': '#F7F7F7',
-                        'gray-medium': '#A0A0A0',
-                        'gray-dark': '#333333',
-                    }
-                }
-            }
-        }
-    </script>
+      }
+    }
+  </script>
 </head>
 
-<body class="bg-gray-light">
-    <div id="mobile-screen" class="relative w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col">
+<body>
+  <div class="relative w-full max-w-sm mx-auto bg-white h-[844px] shadow-lg flex flex-col">
 
-        <!-- ✅ Header -->
-        <header id="header" class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-            <i onclick="window.location.href='index.html'"
-               class="fa-solid fa-house text-gray-400 text-xl cursor-pointer"></i>
-            <h1 class="text-lg font-medium text-gray-dark">편지함</h1>
-            <div class="w-6"></div>
-        </header>
+    <!-- ✅ Header -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+      <i onclick="window.location.href='index.html'" class="fa-solid fa-house text-gray-400 text-xl cursor-pointer"></i>
+      <h1 class="text-lg font-medium text-gray-dark">편지함</h1>
+      <div class="w-6"></div>
+    </header>
 
-        <!-- ✅ Tabs -->
-        <nav id="tabs" class="flex border-b border-gray-200">
-            <!-- 🔹 안읽은 편지함 클릭 시 mailbox.html로 이동 -->
-            <div onclick="window.location.href='mailbox.html'"
-                 class="flex-1 text-center py-3 cursor-pointer">
-                <span class="text-gray-medium">안 읽은 편지함</span>
+    <!-- ✅ Tabs -->
+    <nav class="flex border-b border-gray-200">
+      <!-- 안 읽은 편지함 비활성 -->
+      <div onclick="window.location.href='mailbox.html'"
+           class="flex-1 text-center py-3 cursor-pointer">
+        <span class="text-gray-medium">안 읽은 편지함</span>
+      </div>
+      <!-- ✅ 읽은 편지함 선택 -->
+      <div class="flex-1 text-center py-3 border-b-2 border-black">
+        <span class="font-semibold text-gray-dark">읽은 편지함</span>
+      </div>
+    </nav>
+
+    <!-- ✅ Main Content -->
+    <main class="flex-1 overflow-y-auto bg-gray-light p-4 space-y-4">
+
+      <!-- Message Card 1 -->
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
+           onclick="window.location.href='recipient.html'">
+        <div class="flex space-x-4">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
+              <img class="w-full h-full object-cover"
+                   src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-e102cc991a033ac2f75d.png"
+                   alt="grandfather illustration" />
             </div>
-            <!-- ✅ 읽은 편지함 선택됨 -->
-            <div class="flex-1 text-center py-3 border-b-2 border-black">
-                <span class="font-semibold text-gray-dark">읽은 편지함</span>
+            <span class="mt-2 text-sm text-gray-600">할아버지</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-xs text-gray-400">25.10.03 (토)</p>
+            <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
+            <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
+              <p>할아버지 보고 싶어요.</p>
+              <p>요즘 어떻게 지내세요?</p>
             </div>
-        </nav>
-
-        <!-- ✅ Main Content -->
-        <main id="main-content" class="flex-1 overflow-y-auto bg-gray-light p-4 space-y-4 pb-28">
-
-            <!-- Message Card 1 -->
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
-                 onclick="window.location.href='recipient.html'">
-                <div class="flex space-x-4">
-                    <div class="flex flex-col items-center flex-shrink-0">
-                        <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
-                            <img class="w-full h-full object-cover"
-                                 src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-e102cc991a033ac2f75d.png"
-                                 alt="grandfather illustration" />
-                        </div>
-                        <span class="mt-2 text-sm text-gray-600">할아버지</span>
-                    </div>
-                    <div class="flex-1">
-                        <p class="text-xs text-gray-400">25.10.03 (토)</p>
-                        <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
-                        <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
-                            <p>할아버지 보고 싶어요.</p>
-                            <p>요즘 어떻게 지내세요?</p>
-                        </div>
-                        <div class="text-center my-3">
-                            <i class="fa-solid fa-arrow-down text-gray-400"></i>
-                        </div>
-                        <p class="text-xs text-gray-500">답장 받은 편지</p>
-                        <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
-                            <p>아이구 ~ 우리 손녀 잘지내니? 할애비도 잘지낸다 ...</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center my-3">
+              <i class="fa-solid fa-arrow-down text-gray-400"></i>
             </div>
-
-            <!-- Message Card 2 -->
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
-                 onclick="window.location.href='recipient.html'">
-                <div class="flex space-x-4">
-                    <div class="flex flex-col items-center flex-shrink-0">
-                        <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
-                            <img class="w-full h-full object-cover"
-                                 src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-9691c1e8a7204667f8f9.png"
-                                 alt="father illustration" />
-                        </div>
-                        <span class="mt-2 text-sm text-gray-600">아버지</span>
-                    </div>
-                    <div class="flex-1">
-                        <p class="text-xs text-gray-400">25.10.03 (토)</p>
-                        <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
-                        <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
-                            <p>아버지 추석 잘 보냈어요?</p>
-                            <p>보고싶네요 아버지</p>
-                        </div>
-                        <div class="text-center my-3">
-                            <i class="fa-solid fa-arrow-down text-gray-400"></i>
-                        </div>
-                        <p class="text-xs text-gray-500">답장 받은 편지</p>
-                        <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
-                            <p>그래, 벌써 추석이구나 나는 잘 지낸다. 너도 몸 조리 잘하고...</p>
-                        </div>
-                    </div>
-                </div>
+            <p class="text-xs text-gray-500">답장 받은 편지</p>
+            <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
+              <p>아이구 ~ 우리 손녀 잘지내니? 할애비도 잘지낸다 ...</p>
             </div>
-
-        </main>
-
-        <!-- ✅ CTA -->
-        <div id="cta-section" class="px-4 pb-24 bg-gray-light">
-            <button onclick="window.location.href='letter.html'"
-                    class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl shadow-lg">
-                새 편지 작성
-            </button>
+          </div>
         </div>
+      </div>
 
-        <!-- ✅ Footer Navigation (fixed) -->
-        <footer id="footer"
-            class="fixed bottom-0 left-0 right-0 max-w-sm mx-auto flex justify-around items-center py-2 border-t border-gray-200 bg-white shadow-lg">
-            <!-- 홈 -->
-            <div onclick="window.location.href='index.html'" class="flex flex-col items-center text-gray-400 cursor-pointer">
-                <i class="fa-solid fa-house text-xl"></i>
-                <span class="text-xs mt-1">홈</span>
+      <!-- Message Card 2 -->
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm clickable-card"
+           onclick="window.location.href='recipient.html'">
+        <div class="flex space-x-4">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="w-16 h-16 rounded-full overflow-hidden border border-gray-200">
+              <img class="w-full h-full object-cover"
+                   src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e42760f40c-9691c1e8a7204667f8f9.png"
+                   alt="father illustration" />
             </div>
-
-            <!-- 현재 페이지: 편지함 활성 -->
-            <div class="flex flex-col items-center text-brand-blue">
-                <i class="fa-solid fa-envelope text-xl"></i>
-                <span class="text-xs mt-1">편지함</span>
+            <span class="mt-2 text-sm text-gray-600">아버지</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-xs text-gray-400">25.10.03 (토)</p>
+            <p class="text-xs text-gray-500 mt-1">내가 보낸 편지</p>
+            <div class="mt-2 bg-light-blue-bg p-3 rounded-lg text-gray-800 text-sm">
+              <p>아버지 추석 잘 보냈어요?</p>
+              <p>보고싶네요 아버지</p>
             </div>
-
-            <!-- 달력 -->
-            <div onclick="window.location.href='calendar.html'" class="flex flex-col items-center text-gray-400 cursor-pointer">
-                <i class="fa-solid fa-calendar-days text-xl"></i>
-                <span class="text-xs mt-1">달력</span>
+            <div class="text-center my-3">
+              <i class="fa-solid fa-arrow-down text-gray-400"></i>
             </div>
-        </footer>
+            <p class="text-xs text-gray-500">답장 받은 편지</p>
+            <div class="mt-2 bg-light-yellow-bg p-3 rounded-lg text-gray-800 text-sm">
+              <p>그래, 벌써 추석이구나 나는 잘 지낸다. 너도 몸 조리 잘하고...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-    </div>
+    <!-- ✅ 새 편지 작성 버튼 (좌우16px, 네비바 위16px) -->
+    <button id="cta-button" onclick="window.location.href='letter.html'">
+      새 편지 작성
+    </button>
+
+    <!-- ✅ Footer Navigation -->
+    <footer class="flex justify-around items-center">
+      <!-- 홈 -->
+      <div onclick="window.location.href='index.html'"
+           class="flex flex-col items-center text-gray-400 cursor-pointer">
+        <i class="fa-solid fa-house text-xl"></i>
+        <span class="text-xs mt-1">홈</span>
+      </div>
+
+      <!-- 편지함 활성 -->
+      <div class="flex flex-col items-center text-brand-blue">
+        <i class="fa-solid fa-envelope text-xl"></i>
+        <span class="text-xs mt-1">편지함</span>
+      </div>
+
+      <!-- 달력 -->
+      <div onclick="window.location.href='calendar.html'"
+           class="flex flex-col items-center text-gray-400 cursor-pointer">
+        <i class="fa-solid fa-calendar-days text-xl"></i>
+        <span class="text-xs mt-1">달력</span>
+      </div>
+    </footer>
+
+  </div>
 </body>
 
 </html>
