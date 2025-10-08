@@ -10,6 +10,11 @@
   <style>
     ::-webkit-scrollbar { display: none; }
 
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #ffffff;
+    }
+
     /* ✅ 달력 카드 말줄임 */
     .line-clamp-2 {
       display: -webkit-box;
@@ -19,11 +24,21 @@
     }
 
     /* ✅ Footer Navigation 색상 */
-    .nav-text-gray {
-      color: #9CA3AF; /* 회색(비활성) */
-    }
-    .nav-text-active {
-      color: #4C8AD6; /* 파란색(활성) */
+    .nav-text-gray { color: #9CA3AF; }      /* 비활성 회색 */
+    .nav-text-active { color: #4C8AD6; }    /* 활성 파란색 */
+
+    /* 🔥 Footer를 페이지 로딩과 동시에 표시 */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 375px;
+      z-index: 50;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
     }
   </style>
 </head>
@@ -40,7 +55,7 @@
       <h1 class="text-lg font-medium text-gray-700">편지 캘린더</h1>
     </header>
 
-    <!-- 메인 -->
+    <!-- 메인 (네비바 높이만큼 여백 확보) -->
     <main class="px-6 pt-4 pb-24 flex-1 overflow-y-auto">
       <!-- 월 네비게이션 -->
       <section class="flex items-center justify-between mb-4">
@@ -92,21 +107,21 @@
       </section>
     </main>
 
-    <!-- ✅ Footer Navigation -->
-    <footer id="footer" class="flex justify-around items-center py-2 border-t border-gray-200 bg-white">
-      <!-- 홈은 비활성 -->
+    <!-- ✅ Footer Navigation: 화면 로드 시 즉시 보이도록 -->
+    <footer class="flex justify-around items-center py-2">
+      <!-- 홈(비활성) -->
       <div onclick="window.location.href='index.html'" class="flex flex-col items-center nav-text-gray cursor-pointer">
         <i class="fa-solid fa-house text-xl"></i>
         <span class="text-xs mt-1">홈</span>
       </div>
 
-      <!-- 편지함 비활성 -->
+      <!-- 편지함(비활성) -->
       <div onclick="window.location.href='mailbox.html'" class="flex flex-col items-center nav-text-gray cursor-pointer">
         <i class="fa-solid fa-envelope text-xl"></i>
         <span class="text-xs mt-1">편지함</span>
       </div>
 
-      <!-- ✅ 달력 활성 -->
+      <!-- 달력(활성) -->
       <div onclick="window.location.href='calendar.html'" class="flex flex-col items-center nav-text-active cursor-pointer">
         <i class="fa-solid fa-calendar-days text-xl"></i>
         <span class="text-xs mt-1">달력</span>
@@ -115,7 +130,7 @@
   </div>
 
 <script>
-  // 아이콘/컬러
+  // 기존 달력 스크립트 유지
   function getIcon(a){
     return a==='cloud'?'fa-solid fa-cloud':a==='dog'?'fa-solid fa-dog':'fa-solid fa-user-tie';
   }
@@ -123,17 +138,10 @@
     return a==='cloud'?'from-blue-200 to-blue-300':a==='dog'?'from-orange-200 to-orange-300':'from-green-200 to-green-300';
   }
 
-  // 1~12월 편지 데이터
   const letterData={
     "2025-10-07":[{sender:"친구",avatar:"cloud",preview:"10월 7일! 오늘 편지 도착",date:"10월 7일"}],
     "2025-10-22":[{sender:"삼촌",avatar:"user-tie",preview:"가을이네 건강 챙겨라",date:"10월 22일"}],
     "2025-10-30":[{sender:"뽀미",avatar:"dog",preview:"멍멍! 단풍 예뻐",date:"10월 30일"}],
-    "2025-11-05":[{sender:"친구",avatar:"cloud",preview:"11월 시작이네!",date:"11월 5일"}],
-    "2025-11-15":[{sender:"삼촌",avatar:"user-tie",preview:"감기 조심하자",date:"11월 15일"}],
-    "2025-11-28":[{sender:"뽀미",avatar:"dog",preview:"추워 멍멍",date:"11월 28일"}],
-    "2025-12-05":[{sender:"친구",avatar:"cloud",preview:"12월이다! 연말이야",date:"12월 5일"}],
-    "2025-12-24":[{sender:"삼촌",avatar:"user-tie",preview:"메리 크리스마스!",date:"12월 24일"}],
-    "2025-12-31":[{sender:"뽀미",avatar:"dog",preview:"새해 준비 멍!",date:"12월 31일"}],
   };
 
   const sentLetters={};
@@ -181,9 +189,9 @@
     }
     attachDateEvents();
 
-    // 오늘 날짜 선택
     if(currentYear===today.getFullYear() && currentMonth===today.getMonth()){
-      const todayCell=[...document.querySelectorAll('.calendar-date')].find(c=>+c.dataset.date===today.getDate());
+      const todayCell=[...document.querySelectorAll('.calendar-date')]
+        .find(c=>+c.dataset.date===today.getDate());
       if(todayCell) todayCell.click();
     } else {
       letterSection.style.opacity='0';
@@ -216,7 +224,6 @@
       return;
     }
 
-    // ✅ 받은 편지 카드
     replies.forEach(l=>{
       letterBox.innerHTML+=`
         <div onclick="location.href='recipient.html'"
@@ -236,7 +243,6 @@
         </div>`;
     });
 
-    // ✅ 보낸 편지 카드
     sent.forEach(s=>{
       sentBox.innerHTML+=`
         <div onclick="location.href='recipient.html'"
